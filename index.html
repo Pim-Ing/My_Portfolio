@@ -160,6 +160,9 @@
         .skill-item:hover::before { opacity: 1; }
         .skill-item:hover .skill-icon { color: var(--white); }
         .skill-icon { color: var(--dark-gray); font-size: 1rem; transition: all 0.3s ease; }
+        .skill-item[data-hover] span:last-child { transition: none; }
+        .skill-item[data-hover]:hover span:last-child { display: none; }
+        .skill-item[data-hover]:hover::after { content: attr(data-hover); font-weight: 500; }
 
         .projects-carousel { 
             max-width: 800px; 
@@ -180,14 +183,17 @@
             max-width: 700px; 
         }
         .project-logo { 
-            height: 80px; 
+            height: 100px;
             display: flex; 
             align-items: center; 
             justify-content: center; 
             margin-bottom: 1.5rem; 
-            border-radius: 8px; 
-            font-size: 2.5rem; 
-            transition: all 0.3s ease; 
+            font-size: 4.5rem;
+            color: var(--dark-gray);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover .project-logo {
+            transform: scale(1.08);
         }
         .project-card:hover { 
             transform: translateY(-8px); 
@@ -218,17 +224,21 @@
             margin-bottom: 1.5rem; 
             flex-grow: 1; 
         }
-        .project-status { 
-            display: inline-block; 
-            padding: 0.4rem 1rem; 
-            background: rgba(82,90,102,0.08); 
-            border-radius: 20px; 
-            font-size: 0.8rem; 
-            margin-bottom: 1rem; 
-            color: var(--dark-gray); 
-            font-weight: 600; 
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
         }
-        .status-placeholder { height: 2.2rem; margin-bottom: 1rem; } /* Added for consistent spacing */
+        .project-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            background: rgba(82,90,102,0.08);
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+        }
+
         .btn-outline { 
             padding: 0.6rem 1.4rem; 
             border-radius: 6px; 
@@ -359,7 +369,7 @@
                 margin: 0 auto;
             }
             .about-text {
-                text-align: center; /* Center align on mobile */
+                text-align: center;
             }
         }
         @media (max-width: 768px) { 
@@ -370,8 +380,8 @@
             .project-buttons { flex-direction:column; align-items:flex-start; } 
             .btn-outline { align-self:flex-start; } 
             .projects-carousel {
-                max-width: 100%; /* Full width on mobile */
-                padding: 0 15px; /* Add some padding */
+                max-width: 100%;
+                padding: 0 15px;
             }
             .carousel-control-prev,
             .carousel-control-next {
@@ -457,12 +467,10 @@
                     <p class="about-text">
                         I'm a Business Information Technology student at KMITL with a passion for solving complex business problems through data-driven insights and strategic thinking. With proven leadership experience across multiple projects, I excel at turning analysis into actionable solutions that drive meaningful impact.
                     </p>
-                    
                     <p class="about-text">
                         I'm currently seeking an internship where I can apply my skills in business analytics, project leadership, and problem-solving to support data-informed decision-making.
                     </p>
-                    
-                    <a href="https://drive.google.com/file/d/1Lxp1p3f1qL4Zg-3d3EuTFQsgSFd0SF2i/view?usp=sharing" class="btn-main"  target="_blank" id="downloadCV">Download My CV</a>
+                    <a href="https://drive.google.com/file/d/1Lxp1p3f1qL4Zg-3d3EuTFQsgSFd0SF2i/view?usp=sharing" class="btn-main" target="_blank" id="downloadCV">Download My CV</a>
                 </div>
             </div>
         </div>
@@ -477,6 +485,7 @@
                     <h3>Programming & Databases</h3>
                     <div class="skill-items">
                         <div class="skill-item"><i class="skill-icon fas fa-database"></i><span>SQL & Oracle</span></div>
+                        <div class="skill-item"><i class="skill-icon fas fa-database"></i><span>MySQL</span></div>
                         <div class="skill-item"><i class="skill-icon fab fa-python"></i><span>Python</span></div>
                         <div class="skill-item"><i class="skill-icon fab fa-js"></i><span>JavaScript</span></div>
                         <div class="skill-item"><i class="skill-icon fab fa-html5"></i><span>HTML</span></div>
@@ -492,6 +501,9 @@
                         <div class="skill-item"><i class="skill-icon fab fa-figma"></i><span>Figma</span></div>
                         <div class="skill-item"><i class="skill-icon fas fa-code"></i><span>VS Code</span></div>
                         <div class="skill-item"><i class="skill-icon fas fa-server"></i><span>Oracle IFS</span></div>
+                        <div class="skill-item" data-hover="Data Analytics & ML Platform"><i class="skill-icon fas fa-brain"></i><span>Altair AI Studio</span></div>
+                        <div class="skill-item" data-hover="Process Mining & Analysis"><i class="skill-icon fas fa-network-wired"></i><span>Disco · Fluxicon</span></div>
+                        <div class="skill-item"><i class="skill-icon fas fa-database"></i><span>MySQL</span></div>
                     </div>
                 </div>
 
@@ -500,6 +512,7 @@
                     <div class="skill-items">
                         <div class="skill-item"><i class="skill-icon fas fa-clipboard-list"></i><span>Requirements Gathering</span></div>
                         <div class="skill-item"><i class="skill-icon fas fa-object-group"></i><span>UML Diagram</span></div>
+                        <div class="skill-item"><i class="skill-icon fas fa-pencil-ruler"></i><span>Use Case Design</span></div>
                         <div class="skill-item"><i class="skill-icon fas fa-project-diagram"></i><span>Process Mapping</span></div>
                         <div class="skill-item"><i class="skill-icon fas fa-tasks"></i><span>Agile Methodology</span></div>
                     </div>
@@ -518,9 +531,9 @@
                 <div class="skill-category">
                     <h3>Languages</h3>
                     <div class="skill-items">
-                        <div class="skill-item"><i class="skill-icon fas fa-language"></i><span>Thai</span></div>
-                        <div class="skill-item"><i class="skill-icon fas fa-language"></i><span>English</span></div>
-                        <div class="skill-item"><i class="skill-icon fas fa-language"></i><span>Japanese</span></div>
+                        <div class="skill-item" data-hover="Native"><i class="skill-icon fas fa-language"></i><span>Thai</span></div>
+                        <div class="skill-item" data-hover="Professional Proficiency"><i class="skill-icon fas fa-language"></i><span>English</span></div>
+                        <div class="skill-item" data-hover="Basic · JLPT N5"><i class="skill-icon fas fa-language"></i><span>Japanese</span></div>
                     </div>
                 </div>
 
@@ -528,7 +541,7 @@
         </div>
     </section>
 
-    <!-- Projects (Carousel that auto-slides every 5s) -->
+    <!-- Projects -->
     <section id="projects" class="section section-gray">
         <div class="container">
             <h2 class="section-title">Projects</h2>
@@ -536,42 +549,166 @@
             <div id="projectsCarousel" class="carousel slide projects-carousel" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-inner">
 
+                    <!-- BOOSTๆ -->
                     <div class="carousel-item active">
-                        <div class="project-card pluto">
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-chart-column"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">ERP</span>
+                                <span class="project-tag">KPI Dashboard</span>
+                                <span class="project-tag">Oracle IFS</span>
+                                <span class="project-tag">Data Analysis</span>
+                            </div>
+                            <h3><span class="project-name">BOOSTๆ</span></h3>
+                            <h4>ERP Implementation & KPI Analytics</h4>
+                            <p>Built KPI dashboards across O2C and P2P cycles via Oracle IFS. Analyzed inventory surplus and developed reporting frameworks to turn business needs into actionable metrics.</p>
+                            <div class="project-buttons">
+                                <a href="https://drive.google.com/file/d/1POrMtelR_H08bSTgG28NL9pI15cH2FiZ/view?usp=sharing" class="btn-outline"><i class="fas fa-file-powerpoint"></i> Presentation </a>
+                                <a href="https://drive.google.com/file/d/1rbkXZ7gSu2K5-oC9qX9b_LfaMIrmr9nx/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> Report </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PLUTO -->
+                    <div class="carousel-item">
+                        <div class="project-card">
                             <div class="project-logo"><i class="fas fa-cart-shopping"></i></div>
-                            <span class="project-status">In Progress</span>
+                            <div class="project-tags">
+                                <span class="project-tag">Oracle SQL</span>
+                                <span class="project-tag">System Design</span>
+                                <span class="project-tag">UML</span>
+                                <span class="project-tag">PDPA</span>
+                            </div>
                             <h3><span class="project-name">PLUTO</span></h3>
                             <h4>Multi-Store Loyalty Platform</h4>
-                            <p>Leading a team to design and prototype a centralized loyalty app. Designed the Oracle SQL database and defined system architecture for PDPA compliance.</p>
+                            <p>Led a team to design and prototype a centralized multi-store loyalty app. Designed system architecture with UML diagrams, built a relational Oracle SQL database (10+ tables), and defined data flows with PDPA compliance in mind.</p>
                             <div class="project-buttons">
                                 <a href="https://github.com/Pim-Ing/Pluto-loyalty-platform" class="btn-outline" target="_blank"><i class="fab fa-github"></i> View Code</a>
+                                <a href="https://www.figma.com/proto/4473QjW7RIMeZ7gu3J9Nwe/Pluto-UI-Design?node-id=194-2188&starting-point-node-id=194%3A427&t=OIvSQgLSfBSMUacK-1" class="btn-outline"><i class="fab fa-figma"></i> Figma </a>
+                                <a href="https://drive.google.com/file/d/1N4b19n-TVb5lBrqdqBx2qYXG0l-Rak2A/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> PDF </a>
                             </div>
                         </div>
                     </div>
 
+                    <!-- UX/UI — Bondly -->
                     <div class="carousel-item">
-                        <div class="project-card jackie">
-                            <div class="project-logo"><i class="fas fa-tshirt"></i></div>
-                            <span class="project-status">Completed</span>
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-mobile-screen-button"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">Figma</span>
+                                <span class="project-tag">User Research</span>
+                                <span class="project-tag">Wireframing</span>
+                                <span class="project-tag">Prototyping</span>
+                                <span class="project-tag">Elderly-Friendly Design</span>
+                            </div>
+                            <h3><span class="project-name">BONDLY</span></h3>
+                            <h4>A Safe Space to Share and Care — Elder-Friendly Social Media App</h4>
+                            <p>Designed an accessible social media app for seniors addressing small text, complex navigation, and online scams. User testing with ages 60–74 confirmed improved confidence and ease of use.</p>
+                            <div class="project-buttons">
+                                <a href="https://www.figma.com/proto/8P96YFks9dHsMaXbFiU2Vb/Hi-Fi-Bondly?node-id=4075-1947&starting-point-node-id=4075%3A2400&t=Sn8j8jo0FkJOwu5v-1" class="btn-outline"><i class="fab fa-figma"></i> View Prototype </a>
+                                <a href="https://drive.google.com/file/d/1ily0Mx6Wzi9Mr6a69W_BIs75hoE1g-_q/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> Case Study </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IT PM — Tobii -->
+                    <div class="carousel-item">
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-brain"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">IT Project Management</span>
+                                <span class="project-tag">Cognitive Research</span>
+                                <span class="project-tag">Tobii T120</span>
+                                <span class="project-tag">ADHD Biomarker</span>
+                                <span class="project-tag">PMBOK</span>
+                            </div>
+                            <h3><span class="project-name">Cognitive Impairment Research</span></h3>
+                            <h4>IT Project Management Case Study: Eye-Tracking for ADHD</h4>
+                            <p>Managed a full project lifecycle applying PMBOK principles to clinical research using Tobii T120 eye-tracking to measure vergence dynamics as an objective ADHD biomarker in children.</p>
+                            <div class="project-buttons">
+                                <a href="https://drive.google.com/file/d/1Sro7i7EVuaqQQbbmhF_eZ1LLerLfT2em/view?usp=sharing" class="btn-outline"><i class="fas fa-file-powerpoint"></i> Presentation </a>
+                                <a href="https://drive.google.com/file/d/1b2BU2Dj4d3nsEkLvyjuZlH2aABBfsUbd/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> Full Report </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ALTAIR -->
+                    <div class="carousel-item">
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-thumbs-up"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">Altair AI Studio</span>
+                                <span class="project-tag">Data Analytics</span>
+                                <span class="project-tag">Decision Tree</span>
+                                <span class="project-tag">Predictive Modeling</span>
+                                <span class="project-tag">Social Media</span>
+                            </div>
+                            <h3><span class="project-name">Social Media Addiction Analysis</span></h3>
+                            <h4>Students' Behavior & Academic Impact Prediction</h4>
+                            <p>Analyzed 705 student records using Altair AI Studio. Built a Decision Tree model achieving 98.5% accuracy, identifying Addicted_Score as the dominant predictor of academic impact.</p>
+                            <div class="project-buttons">
+                                <a href="https://drive.google.com/file/d/1BZg_QlIl2iMAarJpqFSsHZ8j9hI4beEF/view?usp=sharing" class="btn-outline"><i class="fas fa-file-powerpoint"></i> Presentation </a>
+                                <a href="https://drive.google.com/file/d/1sv-3uzOL_CZnPbTuG95n4ptQKc3CJ6kI/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> Full Report </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DISCO -->
+                    <div class="carousel-item">
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-cookie-bite"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">Disco · Fluxicon</span>
+                                <span class="project-tag">Process Mining</span>
+                                <span class="project-tag">Business Process</span>
+                                <span class="project-tag">Data Analysis</span>
+                                <span class="project-tag">Bottleneck Detection</span>
+                            </div>
+                            <h3><span class="project-name">Chocolate Sales Process Mining</span></h3>
+                            <h4>Process Discovery & Performance Analysis with Disco</h4>
+                            <p>Analyzed 2,289 events across 300 sales cases using Fluxicon Disco. Identified three process variants, bottlenecks at Custom Chocolate Arrangement, and key resource handoff patterns.</p>
+                            <div class="project-buttons">
+                                <a href="https://drive.google.com/file/d/1xOabA04vQorxfWRDEW1_fMKUaNLO-HNG/view?usp=sharing" class="btn-outline"><i class="fas fa-file-powerpoint"></i> Presentation </a>
+                                <a href="https://drive.google.com/file/d/1V6vvoN2Y_lM2jcopdE7ojmvYrYs--ppe/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> Full Report </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- JACKIE -->
+                    <div class="carousel-item">
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-shirt"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">Market Research</span>
+                                <span class="project-tag">Business Model</span>
+                                <span class="project-tag">User Research</span>
+                                <span class="project-tag">Pitch Deck</span>
+                            </div>
                             <h3><span class="project-name">JACKIE</span></h3>
                             <h4>Sleepy Hoodie Innovation</h4>
-                            <p>Managed a team to research, design, and pitch a novel wearable product concept. Applied user-centered design principles and developed a full business model.</p>
+                            <p>Managed a team to research, design, and pitch a wearable product concept. Conducted user research, competitor analysis, and developed a full business model with pricing and revenue streams.</p>
                             <div class="project-buttons">
                                 <a href="https://drive.google.com/file/d/12h35CxEFiycZcwQrbtXrvdCUqjhcJhS-/view?usp=sharing" class="btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> View Pitch Deck</a>
+                                <a href="https://drive.google.com/file/d/1TM1LP-C5H-BdZtIXlQ7rZ44Fhmxz0yYp/view?usp=sharing" class="btn-outline"><i class="fas fa-file-pdf"></i> View Business Plan — link coming soon</a>
                             </div>
                         </div>
                     </div>
 
+                    <!-- STRICE -->
                     <div class="carousel-item">
-                        <div class="project-card strice">
-                            <div class="project-logo"><i class="fas fa-head-side-mask"></i></div>
-                            <span class="project-status">Completed</span>
+                        <div class="project-card">
+                            <div class="project-logo"><i class="fas fa-seedling"></i></div>
+                            <div class="project-tags">
+                                <span class="project-tag">Hult Prize</span>
+                                <span class="project-tag">Financial Strategy</span>
+                                <span class="project-tag">Sustainability</span>
+                                <span class="project-tag">Figma</span>
+                            </div>
                             <h3><span class="project-name">STRICE</span></h3>
                             <h4>Sustainable Agri-Tech Initiative</h4>
-                            <p>Researched and pitched a business model for the Hult Prize competition. Co-developed the financial strategy and built a Figma prototype for a supporting app.</p>
+                            <p>Researched and pitched a sustainable agri-tech business model for the Hult Prize. Co-developed the financial strategy and built a Figma prototype for the supporting app.</p>
                             <div class="project-buttons">
-                                <a href="https://docs.google.com/presentation/d/1AvH8qgDT44EqzjRCqNn4gI6B6SrCoMNC/edit?usp=sharing&ouid=112813229981343902906&rtpof=true&sd=true" class="btn-outline" target="_blank"><i class="fas fa-file-powerpoint"></i> Presentation</a>
-                                <a href="https://drive.google.com/file/d/1istPAytYUu2x-sd0JufWvvPIdchXTX/view?usp=sharing" class="btn-outline" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                                <a href="https://docs.google.com/presentation/d/1AvH8qgDT44EqzjRCqNn4gI6B6SrCoMNC/edit?usp=sharing&ouid=112813229981343902906&rtpof=true&sd=true" class="btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> View Pitch Deck</a>
                             </div>
                         </div>
                     </div>
@@ -583,6 +720,11 @@
                     <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
@@ -669,7 +811,6 @@
         window.addEventListener('scroll', checkScroll);
         window.addEventListener('load', checkScroll);
 
- 
         const skillCategories = document.querySelectorAll('.skill-category h3');
         skillCategories.forEach(category => {
             category.addEventListener('click', function() {
@@ -682,7 +823,6 @@
         if (projectsCarouselEl) {
             const carousel = new bootstrap.Carousel(projectsCarouselEl, { interval: 5000, ride: 'carousel', pause: 'hover' });
         }
-
     </script>
 </body>
 </html>
